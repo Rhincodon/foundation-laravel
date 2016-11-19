@@ -12,9 +12,9 @@ trait MarshalTrait
     /**
      * Marshal a command from the given array accessible object.
      *
-     * @param string       $command
+     * @param string $command
      * @param \ArrayAccess $source
-     * @param array        $extras
+     * @param array $extras
      *
      * @return mixed
      */
@@ -36,16 +36,19 @@ trait MarshalTrait
     /**
      * Get a parameter value for a marshaled command.
      *
-     * @param string               $command
-     * @param \ArrayAccess         $source
+     * @param string $command
+     * @param \ArrayAccess $source
      * @param \ReflectionParameter $parameter
-     * @param array                $extras
-     *
+     * @param array $extras
      * @return mixed
+     * @throws Exception
      */
-    protected function getParameterValueForCommand($command, ArrayAccess $source,
-        ReflectionParameter $parameter, array $extras = [])
-    {
+    protected function getParameterValueForCommand(
+        $command,
+        ArrayAccess $source,
+        ReflectionParameter $parameter,
+        array $extras = []
+    ) {
         if (array_key_exists($parameter->name, $extras)) {
             return $extras[$parameter->name];
         }

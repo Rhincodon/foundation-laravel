@@ -2,18 +2,15 @@
 
 namespace Lucid\Foundation;
 
-/**
- * Validation factory.
- */
 class Validation
 {
     /**
      * Get a new validation instance for the given attributes and rules.
      *
-     * @param  array  $data
-     * @param  array  $rules
-     * @param  array  $messages
-     * @param  array  $customAttributes
+     * @param  array $data
+     * @param  array $rules
+     * @param  array $messages
+     * @param  array $customAttributes
      *
      * @return \Illuminate\Validation\Validator
      */

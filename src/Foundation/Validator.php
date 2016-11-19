@@ -2,6 +2,8 @@
 
 namespace Lucid\Foundation;
 
+use Lucid\Foundation\Exceptions\InvalidInputException;
+
 /**
  * Base Validator class, to be extended by specific validators.
  * Decorates the process of validating input. Simply declare
@@ -27,7 +29,7 @@ class Validator
      *
      * @return bool
      *
-     * @throws \Lucid\Foundation\InvalidInputException
+     * @throws \Lucid\Foundation\Exceptions\InvalidInputException
      */
     public function validate($input, array $rules = [])
     {
@@ -41,7 +43,7 @@ class Validator
     }
 
     /**
-     * Get a validation instance out of the given input and optionatlly rules
+     * Get a validation instance out of the given input and optionally rules
      * by default the $rules property will be used.
      *
      * @param array $input

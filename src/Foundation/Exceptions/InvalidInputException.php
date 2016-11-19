@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucid\Foundation;
+namespace Lucid\Foundation\Exceptions;
 
 use Exception;
 use Illuminate\Validation\Validator as IlluminateValidator;
