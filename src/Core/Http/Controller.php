@@ -2,10 +2,13 @@
 
 namespace Lucid\Core\Http;
 
-use Lucid\Foundation\Http\Controller as BaseController;
+use Illuminate\Routing\Controller as BaseController;
+use Lucid\Foundation\ServesFeaturesTrait;
 
 class Controller extends BaseController
 {
+    use ServesFeaturesTrait;
+
     public $features = [];
 
     public function __call($name, $arguments)
