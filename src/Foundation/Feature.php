@@ -5,7 +5,6 @@ namespace Lucid\Foundation;
 use ReflectionClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Domains\Queue\DefaultQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 abstract class Feature
@@ -19,9 +18,9 @@ abstract class Feature
      * When the $arguments is an instance of Request
      * it will call dispatchFrom instead.
      *
-     * @param string                         $job
+     * @param string $job
      * @param array|\Illuminate\Http\Request $arguments
-     * @param array                          $extra
+     * @param array $extra
      *
      * @return mixed
      */
@@ -34,7 +33,7 @@ abstract class Feature
                 $job = $this->marshal($job, new Collection(), $arguments);
             }
 
-            $result = $this->dispatch($job, $arguments);
+            $result = $this->dispatch($job);
         }
 
         return $result;
@@ -43,10 +42,9 @@ abstract class Feature
     /**
      * Run the given job in the given queue.
      *
-     * @param string     $job
-     * @param array      $arguments
-     * @param Queue|null $queue
-     *
+     * @param string $job
+     * @param array $arguments
+     * @param string $queue
      * @return mixed
      */
     public function runInQueue($job, array $arguments = [], $queue = 'default')
@@ -54,7 +52,7 @@ abstract class Feature
         // instantiate and queue the job
         $reflection = new ReflectionClass($job);
         $jobInstance = $reflection->newInstanceArgs($arguments);
-        $jobInstance->onQueue((string) $queue);
+        $jobInstance->onQueue((string)$queue);
 
         return $this->dispatch($jobInstance);
     }
